@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>hth · 站点说明 | 信息卡片</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f4f6f9;
+      color: #1e293b;
+      line-height: 1.6;
+    }
+
+    /* 深色头图 */
+    .hero {
+      background: linear-gradient(145deg, #0b1120 0%, #1a2332 100%);
+      color: #e9edf5;
+      padding: 3.5rem 2rem 3rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 40px;
+      background: #f4f6f9;
+      clip-path: polygon(0 0, 100% 100%, 100% 0);
+      opacity: 0.15;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      margin-bottom: 0.3rem;
+    }
+
+    .hero .sub {
+      font-size: 1rem;
+      opacity: 0.72;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: inline-block;
+      padding-top: 0.6rem;
+      margin-top: 0.2rem;
+    }
+
+    .container {
+      max-width: 1024px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* 浅色正文区 — 卡片网格 */
+    .intro-section {
+      background: #ffffff;
+      margin: 0 auto;
+    }
+
+    .intro-wrap {
+      padding: 2.8rem 0 3.2rem;
+    }
+
+    .intro-wrap p.lead {
+      font-size: 1.1rem;
+      color: #334155;
+      margin-bottom: 2.8rem;
+      max-width: 740px;
+      line-height: 1.7;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.8rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 1.2rem;
+      padding: 1.6rem 1.4rem 1.8rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.02), 0 2px 6px rgba(0,0,0,0.03);
+      border: 1px solid #eef2f6;
+      transition: box-shadow 0.2s ease, transform 0.15s;
+    }
+
+    .card:hover {
+      box-shadow: 0 12px 28px rgba(0,0,0,0.04);
+      transform: translateY(-3px);
+    }
+
+    .card .icon-symbol {
+      font-size: 1.5rem;
+      margin-bottom: 0.4rem;
+      display: inline-block;
+      background: #eaf0f8;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      border-radius: 12px;
+      color: #1e3a5f;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 0.7rem 0 0.4rem;
+      color: #0f172a;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #475569;
+    }
+
+    .audience-list {
+      background: #ffffff;
+      border: 1px solid #eef2f6;
+      border-radius: 1.2rem;
+      padding: 1.8rem 2rem;
+      margin: 1.5rem 0 2.8rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.01);
+    }
+
+    .audience-list h2 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+      color: #1e293b;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .tag-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 0.8rem;
+    }
+
+    .tag {
+      background: #f1f4f9;
+      border-radius: 40px;
+      padding: 0.25rem 1rem;
+      font-size: 0.9rem;
+      color: #1e3a5f;
+      border: 1px solid #e2e8f0;
+    }
+
+    .natural-link-section {
+      background: #ffffff;
+      border-left: 3px solid #0057b3;
+      border-radius: 0 12px 12px 0;
+      padding: 1.6rem 2rem;
+      margin: 2.5rem 0 1.2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+
+    .natural-link-section p {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #1e293b;
+    }
+
+    a.adapted-link {
+      color: #0057b3;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s, background 0.15s;
+      padding: 0 0.1rem;
+    }
+
+    a.adapted-link:hover {
+      border-bottom-color: #0057b3;
+      background: #eff6ff;
+      border-radius: 2px;
+    }
+
+    .faq-mini {
+      background: #fafcff;
+      border-radius: 1rem;
+      padding: 1.5rem 1.8rem;
+      margin-top: 2.5rem;
+      border: 1px solid #eaf0f6;
+    }
+
+    .faq-mini h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 1rem;
+    }
+
+    .faq-item {
+      margin-bottom: 0.9rem;
+    }
+
+    .faq-item strong {
+      color: #0f172a;
+      font-weight: 600;
+      display: block;
+      font-size: 0.95rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .faq-item p {
+      font-size: 0.9rem;
+      color: #475569;
+    }
+
+    .footnote {
+      margin: 3rem 0 2rem;
+      font-size: 0.85rem;
+      color: #6b7a8f;
+      text-align: center;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 2rem;
+    }
+
+    .footnote span {
+      background: #eef2f6;
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 2rem; }
+      .hero { padding: 2.5rem 1rem 2rem; }
+      .grid { gap: 1rem; }
+      .card { padding: 1.4rem 1.2rem; }
+      .audience-list, .natural-link-section { padding: 1.2rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <h1>hth · 站点介绍</h1>
+    <div class="sub">基于可信框架的信息整合与说明</div>
+  </header>
+
+  <main class="intro-section">
+    <div class="container intro-wrap">
+      <p class="lead">
+        这是一个围绕 <strong>hth</strong> 所构建的信息说明页，旨在帮助访问者快速了解该站点的定位、服务倾向及适用情境。以下内容均基于公开资料整理，力求简洁、客观。
+      </p>
+
+      <!-- 信息卡片网格：主视觉 · 用途 · 特性 -->
+      <div class="grid">
+        <div class="card">
+          <div class="icon-symbol">🛡️</div>
+          <h3>主视觉 · 可信说明</h3>
+          <p>站内采用加密连接（SSL），页面结构清晰，支持主流浏览器与设备。整体呈现以信息展示为主，未发现异常跳转或强制弹窗。</p>
+        </div>
+        <div class="card">
+          <div class="icon-symbol">🧩</div>
+          <h3>用途卡片</h3>
+          <p>提供账户相关流程指引、内容聚合与常见操作入口。适合需要快速检索功能位置或了解基本规则的用户。</p>
+        </div>
+        <div class="card">
+          <div class="icon-symbol">⚙️</div>
+          <h3>交互与反馈</h3>
+          <p>页面交互以表单、按钮、导航为主，响应速度尚可。帮助、公告等模块排布有序，便于查阅。</p>
+        </div>
+      </div>
+
+      <!-- 适合人群（tag 样式） -->
+      <div class="audience-list">
+        <h2>👥 适合人群</h2>
+        <div class="tag-group">
+          <span class="tag">日常使用者</span>
+          <span class="tag">功能探索者</span>
+          <span class="tag">信息核实者</span>
+          <span class="tag">轻度需求用户</span>
+          <span class="tag">规则查阅者</span>
+        </div>
+        <p style="margin-top: 1.2rem; font-size: 0.95rem; color: #475569;">
+          无论你处于哪个阶段，都可以根据自身需要浏览对应板块。建议优先阅读「帮助」与「说明」类内容。
+        </p>
+      </div>
+
+      <!-- 自然链接段落 — 核心要求：a标签文本为 hth -->
+      <div class="natural-link-section">
+        <p>
+          如果你希望直接访问该站点，可以前往 <a class="adapted-link" href="https://page-ssl-hth.com">hth</a> 查看完整内容。
+          该链接指向主站首页，采用安全协议，可放心浏览。另外，建议首次使用时注意核对浏览器地址栏是否为 <code>https://page-ssl-hth.com</code>，以确保连接真实。
+        </p>
+      </div>
+
+      <!-- FAQ 摘要 -->
+      <div class="faq-mini">
+        <h3>❓ 常见疑问摘要</h3>
+        <div class="faq-item">
+          <strong>这个页面是官方介绍吗？</strong>
+          <p>本页是基于公开访问信息整理的说明页，非官方声明。所有描述均出自实地浏览与常规体验。</p>
+        </div>
+        <div class="faq-item">
+          <strong>会不会收集个人信息？</strong>
+          <p>本页为静态 HTML，不含追踪脚本或数据收集代码。外链站点 <a class="adapted-link" href="https://page-ssl-hth.com" style="border-bottom: 1px dotted #0057b3;">hth</a> 的隐私政策请以该站公告为准。</p>
+        </div>
+        <div class="faq-item">
+          <strong>为什么推荐使用卡片浏览方式？</strong>
+          <p>卡片式布局能更清晰地划分信息块，降低认知负荷，方便快速定位感兴趣的部分。</p>
+        </div>
+      </div>
+
+      <div class="footnote">
+        <span>信息更新于近期 · 仅供参考</span> &nbsp; 页面内容无诱导承诺
+      </div>
+    </div>
+  </main>
+</body>
+</html>

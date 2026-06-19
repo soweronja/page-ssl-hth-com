@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://soweronja.github.io/page-ssl-hth-com/sitemap.xml
